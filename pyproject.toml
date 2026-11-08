@@ -1,0 +1,27 @@
+[project]
+name = "sky-core"
+requires-python = ">=3.11"
+dependencies = ["astropy>=8,<9"]
+dynamic = ["version"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "skycore/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["skycore"]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+markers = ["live: needs network access"]
+addopts = "-m 'not live'"
+
+[tool.pyright]
+include = ["skycore", "tests"]
+typeCheckingMode = "standard"
+useLibraryCodeForTypes = false
